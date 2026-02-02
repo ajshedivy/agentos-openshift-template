@@ -5,6 +5,7 @@ Deploy the IBM i MCP Server in containerized environments using Docker, Podman, 
 ## Table of Contents
 - [Deployment Guide](#deployment-guide)
   - [Table of Contents](#table-of-contents)
+  - [Directory Structure](#directory-structure)
   - [Docker \& Podman Deployment](#docker--podman-deployment)
     - [Prerequisites](#prerequisites)
       - [Docker](#docker)
@@ -31,6 +32,36 @@ Deploy the IBM i MCP Server in containerized environments using Docker, Podman, 
     - [Backups](#backups)
   - [Resources](#resources)
 
+---
+
+## Directory Structure
+
+The deployment directory is organized to support both local development and production deployments:
+
+| Directory | Purpose | Documentation |
+|-----------|---------|---------------|
+| **mcpgateway/** | Local Docker/Podman deployment using docker-compose | [mcpgateway/README.md](mcpgateway/README.md) |
+| **openshift/** | Production OpenShift deployment using Kustomize | [openshift/apps/openshift/README.md](openshift/apps/openshift/README.md) |
+
+### OpenShift Components
+
+The OpenShift deployment includes these application components:
+
+| Component | Location | Purpose |
+|-----------|----------|---------|
+| **ibmi-mcp-server** | `openshift/apps/openshift/ibmi-mcp-server/` | IBM i MCP Server with SQL tools |
+| **ibmi-agent-infra** | `openshift/apps/openshift/ibmi-agent-infra/` | Agent OS API, UI, and pgvector database |
+
+Each component has its own README with detailed setup instructions.
+
+### Quick Reference
+
+| Task | Command |
+|------|---------|
+| Start local stack | `docker-compose -f deployment/mcpgateway/docker-compose.yml up -d` |
+| Deploy to OpenShift | `cd deployment/openshift/apps/openshift && kustomize build . \| oc apply -f -` |
+| View local logs | `docker-compose -f deployment/mcpgateway/docker-compose.yml logs -f` |
+| Check OpenShift pods | `oc get pods` |
 
 ---
 
