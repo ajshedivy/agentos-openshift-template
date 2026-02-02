@@ -42,12 +42,8 @@ configMapGenerator:
   env: .env
 - name: tools-config
   files:
-    - tools/developer/object-statistics-dev.yaml
-    - tools/performance/performance.yaml
-    - tools/sample/employee-info.yaml
-    - tools/security/library-list-security.yaml
-    - tools/security/security-ops.yaml
-    - tools/sys-admin/sys-admin.yaml
+    - tools/performance.yaml
+    - tools/sys-admin.yaml
 
 secretGenerator:
   - name: ibmi-mcp-secrets
