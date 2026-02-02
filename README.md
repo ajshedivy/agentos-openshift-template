@@ -1,6 +1,9 @@
-# IBM i Agent Platform
+# AgentOS OpenShift Template
 
-AI agents for IBM i system administration and performance monitoring. Built on [Agno](https://docs.agno.com) AgentOS with the [IBM i MCP Server](https://github.com/IBM/ibmi-mcp-server) for direct Db2 access.
+Deploy a full-stack AI agent platform on Red Hat OpenShift for IBM Power, with IBM i MCP server. 
+
+
+[What is AgentOS?](https://docs.agno.com/agent-os/introduction) · [Agno Docs](https://docs.agno.com) · [IBM i MCP Server](https://github.com/IBM/ibmi-mcp-server)
 
 ## Architecture
 
@@ -264,13 +267,3 @@ source .venv/bin/activate
 ```
 
 </details>
-
-## Workflows (Beta)
-
-Pre-built workflows for common IBM i tasks are available in the [`workflows/`](workflows/) directory:
-
-- **Simple Performance Check** - Quick system health assessment
-- **Performance Investigation** - Deep dive into performance issues
-- **Capacity Planning** - Resource utilization forecasting
-- **Database Tuning** - Db2 performance optimization
-- **System Health Audit** - Comprehensive system analysis
