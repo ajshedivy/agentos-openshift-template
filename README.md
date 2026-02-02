@@ -539,5 +539,5 @@ The specific deployment steps will vary depending on the chosen provider. Genera
 ## Resources
 
 - **[Agno Documentation](https://docs.agno.com)** - AgentOS framework
-- **[IBM i MCP Server](../../../README.md)** - MCP server setup
+- **[IBM i MCP Server](https://github.com/IBM/ibmi-mcp-server)** - MCP server documentation
 - **[Configuration Guide](infra/README.md)** - Environment setup
