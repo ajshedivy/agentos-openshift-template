@@ -28,7 +28,8 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
    wget -O ./ibmi-mcp-server/.env https://raw.githubusercontent.com/IBM/ibmi-mcp-server/refs/heads/main/.env.example
 
    # Copy tools directory from template root into deployment directory
-   cp -r ../../../../tools ibmi-mcp-server/
+   # Navigate to template root first, then:
+   cp -r tools deployment/openshift/apps/openshift/ibmi-mcp-server/
 
    # Create env file in directory ibmi-agent-infra/agent-os-api with your API keys (choose at least one model provider)
    cp ./ibmi-agent-infra/agent-os-api/.env.example ./ibmi-agent-infra/agent-os-api/.env

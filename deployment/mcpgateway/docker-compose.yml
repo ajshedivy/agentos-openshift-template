@@ -411,13 +411,13 @@ services:
     working_dir: /app
     command: npx -y @ibm/ibmi-mcp-server@latest
     env_file:
-      - ../../infra/.env  # Load environment variables from infra/.env
+      - .env  # Load environment variables from local .env (copy from infra/.env)
     environment:
       # Enable YAML auto-reload for development (file watching)
       - YAML_AUTO_RELOAD=true
       - TOOLS_YAML_PATH=/app/tools
     volumes:
-      - ../../tools:/app/tools:rw,Z  # Mount tools configurations with read-write for auto-reload
+      - ./tools:/app/tools:rw,Z  # Mount tools configurations with read-write for auto-reload (copy from template root)
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3010/health"]
       interval: 30s
