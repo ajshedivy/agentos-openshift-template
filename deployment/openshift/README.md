@@ -18,19 +18,18 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
 
 1. **Copy required files**
 
-   Run the commands below to copy required files into specific directory. First make sure you are in directory `deployment/openshift` relative to the project root.
+   Run the commands below from the **project root directory**.
 
    ```bash
-   # Get env file from ibmi mcp server repo
-   wget -O ./ibmi-mcp-server/.env https://raw.githubusercontent.com/IBM/ibmi-mcp-server/refs/heads/main/.env.example
-
-   # Copy tools directory from template root into deployment directory
-   # Navigate to template root first, then:
+   # Copy tools directory into the MCP server deployment directory
    cp -r tools deployment/openshift/ibmi-mcp-server/
 
-   # Create env file in directory ibmi-agent-infra/agent-os-api with your API keys (choose at least one model provider)
-   cp ./ibmi-agent-infra/agent-os-api/.env.example ./ibmi-agent-infra/agent-os-api/.env
+   # Create .env files from examples (edit with your actual values)
+   cp deployment/openshift/ibmi-mcp-server/.env.example deployment/openshift/ibmi-mcp-server/.env
+   cp deployment/openshift/ibmi-agent-infra/agent-os-api/.env.example deployment/openshift/ibmi-agent-infra/agent-os-api/.env
    ```
+
+   Edit both `.env` files with your IBM i connection details and API keys.
 
 2. **Set your namespace**
 
