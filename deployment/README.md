@@ -17,7 +17,7 @@ Deploy the IBM i Agent Platform (AgentOS) to OpenShift.
 
 | Directory | Purpose | Documentation |
 |-----------|---------|---------------|
-| **openshift/** | Production OpenShift deployment using Kustomize | [openshift/apps/openshift/README.md](openshift/apps/openshift/README.md) |
+| **openshift/** | Production OpenShift deployment using Kustomize | [openshift/README.md](openshift/README.md) |
 
 ### OpenShift Components
 
@@ -25,8 +25,8 @@ The OpenShift deployment includes these application components:
 
 | Component | Location | Purpose |
 |-----------|----------|---------|
-| **ibmi-mcp-server** | `openshift/apps/openshift/ibmi-mcp-server/` | IBM i MCP Server with SQL tools |
-| **ibmi-agent-infra** | `openshift/apps/openshift/ibmi-agent-infra/` | AgentOS API, UI, and pgvector database |
+| **ibmi-mcp-server** | `openshift/ibmi-mcp-server/` | IBM i MCP Server with SQL tools |
+| **ibmi-agent-infra** | `openshift/ibmi-agent-infra/` | AgentOS API, UI, and pgvector database |
 
 Each component has its own README with detailed setup instructions.
 
@@ -84,12 +84,12 @@ Provides SQL tools and database access to IBM i systems via the Model Context Pr
 
 Deploy using Kustomize with source-to-image (S2I) builds.
 
-**Full OpenShift Guide:** [`openshift/apps/openshift/README.md`](openshift/apps/openshift/README.md)
+**Full OpenShift Guide:** [`openshift/README.md`](openshift/README.md)
 
 ### Quick Start
 
 ```bash
-cd deployment/openshift/apps/openshift
+cd deployment/openshift
 
 # 1. Set your namespace in kustomization.yaml
 #    Replace <NAMESPACE_PLACEHOLDER> with your OpenShift project name
@@ -116,7 +116,7 @@ echo "AgentOS UI: https://$(oc get route agent-os-ui -o jsonpath='{.spec.host}')
 
 | Task | Command |
 |------|---------|
-| Deploy to OpenShift | `cd deployment/openshift/apps/openshift && kustomize build . \| oc apply -f -` |
+| Deploy to OpenShift | `cd deployment/openshift && kustomize build . \| oc apply -f -` |
 | Check pod status | `oc get pods` |
 | View MCP server logs | `oc logs -f deployment/ibmi-mcp-server` |
 | View API logs | `oc logs -f deployment/agent-os-api` |
@@ -171,7 +171,7 @@ oc exec deployment/ibmi-mcp-server -- nc -zv $DB2_HOST 8076
 | Connection refused | Verify IBM i credentials and Mapepire is running |
 | 404 on route | Wait for pod to become ready, check service selectors |
 
-See the [OpenShift README](openshift/apps/openshift/README.md#troubleshooting) for more details.
+See the [OpenShift README](openshift/README.md#troubleshooting) for more details.
 
 ---
 

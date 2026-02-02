@@ -18,7 +18,7 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
 
 1. **Copy required files**
 
-   Run the commands below to copy required files into specific directory. First make sure you are in directory `deployment/openshift/apps/openshift` relative to the project root.
+   Run the commands below to copy required files into specific directory. First make sure you are in directory `deployment/openshift` relative to the project root.
 
    ```bash
    # Get env file from mcp context forge repo
@@ -29,7 +29,7 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
 
    # Copy tools directory from template root into deployment directory
    # Navigate to template root first, then:
-   cp -r tools deployment/openshift/apps/openshift/ibmi-mcp-server/
+   cp -r tools deployment/openshift/ibmi-mcp-server/
 
    # Create env file in directory ibmi-agent-infra/agent-os-api with your API keys (choose at least one model provider)
    cp ./ibmi-agent-infra/agent-os-api/.env.example ./ibmi-agent-infra/agent-os-api/.env

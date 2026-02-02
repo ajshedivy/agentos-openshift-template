@@ -59,7 +59,7 @@ The server needs tool configuration files from the template root:
 
 ```bash
 # From template root directory
-cp -r tools deployment/openshift/apps/openshift/ibmi-mcp-server/
+cp -r tools deployment/openshift/ibmi-mcp-server/
 ```
 
 This copies all YAML tool definitions that will be mounted as a ConfigMap.
@@ -284,7 +284,7 @@ For enhanced security, migrate all sensitive variables from ConfigMap to Secret.
 ## Related Documentation
 
 - **Parent OpenShift README:** [../README.md](../README.md)
-- **Main Deployment Guide:** [../../../../README.md](../../../../README.md)
+- **Main Deployment Guide:** [../../README.md](../../README.md)
 - **IBM i MCP Server:** https://github.com/IBM/ibmi-mcp-server
 - **MCP Context Forge:** https://github.com/IBM/mcp-context-forge
 - **Kustomize:** https://kustomize.io/
