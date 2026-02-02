@@ -80,7 +80,7 @@ The MCP server runs automatically as part of the Docker Compose stack:
 - **From host machine**: Use `http://localhost:3010/mcp`
 - **From external**: Use `http://host.docker.internal:3010/mcp`
 
-The MCP server configuration is loaded from the monorepo root `.env` file (not `infra/.env`).
+The MCP server configuration is loaded from `infra/.env` (the same file as other services).
 
 ---
 
