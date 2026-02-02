@@ -28,12 +28,12 @@ services:
     restart: unless-stopped
     ports:
       - "8000:8000"
-    # env_file:
-    #   - .env
+    env_file:
+      - ./infra/.env
     volumes:
       - .:/app
     environment:
-      # OPENAI_API_KEY: ${OPENAI_API_KEY}
+      # Database configuration
       DB_HOST: pgvector
       DB_PORT: 5432
       DB_USER: ${DB_USER:-ai}
@@ -41,10 +41,14 @@ services:
       DB_DATABASE: ${DB_NAME:-ai}
       WAIT_FOR_DB: "True"
       PRINT_ENV_ON_LOAD: "True"
+      # MCP server configuration (container name for internal networking)
+      MCP_URL: http://ibmi-mcp-server:3010/mcp
+      MCP_TRANSPORT: streamable-http
     networks:
       - agent-os
     depends_on:
       - pgvector
+      - ibmi-mcp-server
 
   ibmi-mcp-server:
     image: node:20-slim
@@ -59,8 +63,10 @@ services:
     env_file:
       - ./infra/.env
     environment:
+      - MCP_TRANSPORT_TYPE=http 
       - YAML_AUTO_RELOAD=true
       - TOOLS_YAML_PATH=/app/tools
+      - YAML_ALLOW_DUPLICATE_SOURCES=true
     volumes:
       - ./tools:/app/tools:rw
     healthcheck:

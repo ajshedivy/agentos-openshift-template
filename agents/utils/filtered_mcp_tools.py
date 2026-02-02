@@ -43,10 +43,12 @@ class FilteredMCPTools(MCPTools, metaclass=FilteredMCPToolsMeta):
         transport: Literal["stdio", "sse", "streamable-http"] = "stdio",
         server_params: Optional[Union[StdioServerParameters, SSEClientParams, StreamableHTTPClientParams]] = None,
         session: Optional[ClientSession] = None,
-        timeout_seconds: int = 5,
+        timeout_seconds: int = 30,  # Increased from 5 for slower MCP servers
         client=None,
         include_tools: Optional[List[str]] = None,
         exclude_tools: Optional[List[str]] = None,
+        # MCP connection management
+        refresh_connection: bool = True,  # Re-establish connection on each agent run (recommended for AgentOS)
         # Generic annotation filtering
         annotation_filters: Optional[Dict[str, Union[Any, List[Any], Callable]]] = None,
         # Legacy filtering parameters (for backward compatibility)
@@ -104,6 +106,7 @@ class FilteredMCPTools(MCPTools, metaclass=FilteredMCPToolsMeta):
             client=client,
             include_tools=include_tools,
             exclude_tools=exclude_tools,
+            refresh_connection=refresh_connection,
             **kwargs,
         )
 
