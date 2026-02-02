@@ -1,17 +1,17 @@
 # OpenShift Deployment
 
-This directory contains Kubernetes/OpenShift manifests for deploying IBM i MCP Server, MCP Context Forge and Agents using Kustomize.
+This directory contains Kubernetes/OpenShift manifests for deploying IBM i MCP Server and Agents using Kustomize.
 
 ## Overview
 
-The applications are deployed on OpenShift using a source-to-image (S2I) build strategy. With this strategy, the application can be built from source in a remote repository or local development environment. The deployment of MCP Context Forge is configured with an ImageStreamTag trigger; any new image build will trigger the application re-deployment.
+The applications are deployed on OpenShift using a source-to-image (S2I) build strategy. With this strategy, the application can be built from source in a remote repository or local development environment. Deployments are configured with an ImageStreamTag trigger; any new image build will trigger the application re-deployment.
 
 ## Prerequisites
 
 1. OpenShift cluster access
 2. `oc` CLI tool installed
 3. Kustomize installed
-4. A `.env` file in the `mcp-context-forge/`,  `ibmi-mcp-server`, and `ibmi-agent-infra/agent-os-api` directories with required environment variables
+4. A `.env` file in the `ibmi-mcp-server` and `ibmi-agent-infra/agent-os-api` directories with required environment variables
 5. Enable Red Hat OpenShift internal image registry following the instructions in this [link](https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/registry/setting-up-and-configuring-the-registry)
 
 ## Deployment Instructions
@@ -21,9 +21,6 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
    Run the commands below to copy required files into specific directory. First make sure you are in directory `deployment/openshift` relative to the project root.
 
    ```bash
-   # Get env file from mcp context forge repo
-   wget -O ./mcpgateway/.env https://raw.githubusercontent.com/IBM/mcp-context-forge/refs/heads/main/.env.example
-
    # Get env file from ibmi mcp server repo
    wget -O ./ibmi-mcp-server/.env https://raw.githubusercontent.com/IBM/ibmi-mcp-server/refs/heads/main/.env.example
 
@@ -54,7 +51,6 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
 4. **Monitor the image build**:
 
    ```bash
-   oc logs -f bc/mcp-context-forge
    oc logs -f bc/ibmi-mcp-server
    oc logs -f bc/agent-os-api
    oc logs -f bc/pgvector
@@ -69,7 +65,6 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
 6. **Get the URL for each application**
 
    ```bash
-   echo "https://$(oc get route mcp-context-forge -o jsonpath='{.spec.host}')"
    echo "https://$(oc get route ibmi-mcp-server -o jsonpath='{.spec.host}')"
    echo "https://$(oc get route agent-ui -o jsonpath='{.spec.host}')"
    ```
@@ -78,12 +73,10 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
 
    ```bash
    # Trigger a new build using the source from remote repo
-   oc start-build mcp-context-forge
    oc start-build ibmi-mcp-server
    oc start-build agent-os-api
    oc start-build pgvector
    # Trigger a new build using the source from local
-   oc start-build mcp-context-forge --from-dir=.
    oc start-build ibmi-mcp-server --from-dir=.
    oc start-build agent-os-api --from-dir=.
    oc start-build pgvector --from-dir=.
@@ -91,7 +84,7 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
 
 ## Troubleshooting
 
-- **Build failures**: Check build logs with `oc logs -f bc/mcp-context-forge`
+- **Build failures**: Check build logs with `oc logs -f bc/ibmi-mcp-server`
 - **Pod crashes**: Check pod logs with `oc logs <pod-name>`
 - **Storage issues**: Verify PVC is bound with `oc get pvc`
-- **Access issues**: Verify route with `oc get route mcp-context-forge`
+- **Access issues**: Verify route with `oc get route ibmi-mcp-server`
