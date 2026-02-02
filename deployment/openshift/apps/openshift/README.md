@@ -18,22 +18,19 @@ The applications are deployed on OpenShift using a source-to-image (S2I) build s
 
 1. **Copy required files**
 
-   Run the commands below to copy required files into specific directory. First make sure you are in directory `deployment/openshift/apps/openshift` relate to the project root.
+   Run the commands below to copy required files into specific directory. First make sure you are in directory `deployment/openshift/apps/openshift` relative to the project root.
 
    ```bash
-   # Copy dockerfile into server directory
-   wget -O ../../../../server/Dockerfile https://raw.githubusercontent.com/IBM/ibmi-mcp-server/refs/heads/main/Dockerfile
-
    # Get env file from mcp context forge repo
    wget -O ./mcpgateway/.env https://raw.githubusercontent.com/IBM/mcp-context-forge/refs/heads/main/.env.example
 
    # Get env file from ibmi mcp server repo
    wget -O ./ibmi-mcp-server/.env https://raw.githubusercontent.com/IBM/ibmi-mcp-server/refs/heads/main/.env.example
 
-   # Copy tools and secrets directories into deployment directory
-   cp -r ../../../../{tools,secrets} ibmi-mcp-server/
+   # Copy tools directory from template root into deployment directory
+   cp -r ../../../../tools ibmi-mcp-server/
 
-   # Create env file in diractory ibmi-agent-infra/agent-os-api with your API keys (choose at least one model provider)
+   # Create env file in directory ibmi-agent-infra/agent-os-api with your API keys (choose at least one model provider)
    cp ./ibmi-agent-infra/agent-os-api/.env.example ./ibmi-agent-infra/agent-os-api/.env
    ```
 
