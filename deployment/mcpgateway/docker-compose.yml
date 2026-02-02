@@ -399,29 +399,27 @@ services:
 
   ###############################################################################
   # IBM i MCP Server - SQL database operations for IBM i systems
-  # https://github.com/IBM/ibmi-mcp-server.git
+  # https://github.com/IBM/ibmi-mcp-server
   ###############################################################################
   ibmi-mcp-server:
-    image: ${IBMI_MCP_IMAGE:-ibmi-mcp-server:latest}  # Use env var or default to local image
-    build:
-      context: ../../server      # Build from server directory (monorepo root/server)
-      dockerfile: ../Dockerfile  # Path to Dockerfile in repository root, relative to server context
+    image: node:20-slim
     container_name: ibmi-mcp-server
     networks: [mcpnet]
     ports:
       - "3010:3010"    # Map host port 3010 to container port 3010
     restart: unless-stopped
+    working_dir: /app
+    command: npx -y @ibm/ibmi-mcp-server@latest
     env_file:
-      - ../../.env     # Load environment variables from root .env file
+      - ../../infra/.env  # Load environment variables from infra/.env
     environment:
       # Enable YAML auto-reload for development (file watching)
       - YAML_AUTO_RELOAD=true
-      - TOOLS_YAML_PATH=/usr/src/app/tools
+      - TOOLS_YAML_PATH=/app/tools
     volumes:
-      - ../../tools:/usr/src/app/tools:rw,Z  # Mount tools configurations with read-write for auto-reload
-      - ../../secrets:/usr/src/app/secrets:ro,Z  # Mount secrets directory as read-only
+      - ../../tools:/app/tools:rw,Z  # Mount tools configurations with read-write for auto-reload
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3010/healthz"]
+      test: ["CMD", "curl", "-f", "http://localhost:3010/health"]
       interval: 30s
       timeout: 10s
       retries: 5

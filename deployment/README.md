@@ -108,7 +108,7 @@ IBMI_HTTP_AUTH_ENABLED=true
 IBMI_AUTH_ALLOW_HTTP=true
 ```
 
-> **Note:** You need to generate an RSA keypair for the server if you haven't already done so. See the [IBM i HTTP Authentication](../README.md#-ibm-i-http-authentication-beta) section in the main README for instructions.
+> **Note:** You need to generate an RSA keypair for the server if you haven't already done so. See the [IBM i MCP Server documentation](https://github.com/IBM/ibmi-mcp-server#ibm-i-http-authentication) for instructions.
 
 Once you have your `.env` file configured, you can start the complete stack using Docker or Podman.
 
@@ -282,16 +282,7 @@ Once connected, you can:
 - Monitor tool usage and performance
 - Set up rate limiting per tool
 
-**Screenshots:**
-
-![Gateway UI Dashboard](../docs/images/image.png)
-*MCP Context Forge Gateway Dashboard*
-
-![MCP Server Connection](../docs/images/image-1.png)
-*Connecting to IBM i MCP Server*
-
-![Tool Management](../docs/images/image-2.png)
-*Managing SQL Tools*
+**For screenshots and visual guides**, see the [MCP Context Forge documentation](https://ibm.github.io/mcp-context-forge/).
 
 ---
 
@@ -402,5 +393,5 @@ See the [OpenShift README](openshift/apps/openshift/README.md#troubleshooting) f
 
 - **Docker Compose File:** [`mcpgateway/docker-compose.yml`](mcpgateway/docker-compose.yml)
 - **MCP Context Forge Docs:** https://ibm.github.io/mcp-context-forge/
+- **IBM i MCP Server:** https://github.com/IBM/ibmi-mcp-server
 - [**Main README**](../README.md)
-- [**Tools Configuration**](../tools/README.md)
