@@ -4,14 +4,22 @@
 # ============================================================
 chat:
   quick_prompts:
-    web-search-agent:
+    ibmi-performance-monitor:
       - "What can you do?"
-      - "What is currently happening in France?"
-      - "What is the latest news on the stock market?"
-    agno-assist:
+      - "Check my system status"
+      - "Show me current CPU utilization"
+    ibmi-sysadmin-discovery:
       - "What can you do?"
-      - "What is the latest news on Agno?"
-      - "Tell me about Agno's AgentOS"
+      - "Give me an overview of the system"
+      - "What services are available?"
+    ibmi-sysadmin-browse:
+      - "What can you do?"
+      - "Show me the database schemas"
+      - "List the libraries"
+    ibmi-sysadmin-search:
+      - "What can you do?"
+      - "Search for job information"
+      - "Find SQL examples"
 
 available_models:
   - "openai:gpt-4"
