@@ -1,3 +1,12 @@
+# Kustomization for OpenShift Deployment
+#
+# NAMESPACE CONFIGURATION:
+# Replace <NAMESPACE_PLACEHOLDER> below with your OpenShift project/namespace name.
+# Kustomize will automatically propagate this namespace to all child resources
+# (Deployments, Services, Routes, etc.) in this directory and subdirectories.
+#
+# Example: namespace: my-ibmi-agents
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: <NAMESPACE_PLACEHOLDER>
