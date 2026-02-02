@@ -27,6 +27,5 @@ sortOptions:
   order: legacy
 
 resources:
-- mcpgateway
 - ibmi-mcp-server
 - ibmi-agent-infra
