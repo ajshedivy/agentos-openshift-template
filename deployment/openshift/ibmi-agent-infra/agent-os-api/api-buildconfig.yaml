@@ -13,9 +13,9 @@ spec:
   source:
     type: Git
     git:
-      uri: "https://github.com/IBM/ibmi-mcp-server.git"
-      ref: chore/agent_deployment
-    contextDir: app
+      uri: "https://github.com/ajshedivy/agentos-openshift-template.git"
+      ref: main
+    contextDir: /
   triggers:
     - type: ConfigChange
 
